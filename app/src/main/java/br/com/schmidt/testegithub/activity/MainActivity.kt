@@ -1,14 +1,12 @@
-package br.com.schmidt.testegithub
+package br.com.schmidt.testegithub.activity
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
+import br.com.schmidt.testegithub.R
 import br.com.schmidt.testegithub.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

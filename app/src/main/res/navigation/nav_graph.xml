@@ -7,22 +7,28 @@
 
     <fragment
         android:id="@+id/ShowRepositoriesFragment"
-        android:name="br.com.schmidt.testegithub.ShowRepositoriesFragment"
+        android:name="br.com.schmidt.testegithub.fragments.ShowRepositoriesFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_show_repositories">
 
         <action
             android:id="@+id/action_ShowRepositoriesFragment_to_ShowPullRequestsFragment"
-            app:destination="@id/ShowPullRequestsFragment" />
+            app:destination="@id/ShowPullRequestsFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/ShowPullRequestsFragment"
-        android:name="br.com.schmidt.testegithub.ShowPullRequestsFragment"
+        android:name="br.com.schmidt.testegithub.fragments.ShowPullRequestsFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_show_pull_requests">
 
         <action
             android:id="@+id/action_ShowPullRequestsFragment_to_ShowRepositoriesFragment"
             app:destination="@id/ShowRepositoriesFragment" />
+
+        <argument
+            android:name="teste"
+            app:argType="string" />
+
     </fragment>
 </navigation>
