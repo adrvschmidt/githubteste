@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.schmidt.testegithub.databinding.ItemRepositoryBinding
+import br.com.schmidt.testegithub.models.ItemRepository
 
-class RepositoryAdapter(private val list: ArrayList<String>, private val onClick: (String) -> Unit): RecyclerView.Adapter<RepositoryViewHolder>() {
+class RepositoryAdapter(private val list: List<ItemRepository>, private val onClick: (ItemRepository) -> Unit): RecyclerView.Adapter<RepositoryViewHolder>() {
 
     lateinit var itemRepositoryBinding: ItemRepositoryBinding
 

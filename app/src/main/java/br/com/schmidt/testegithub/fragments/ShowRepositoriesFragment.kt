@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.schmidt.testegithub.R
 import br.com.schmidt.testegithub.RepositoryAdapter
 import br.com.schmidt.testegithub.databinding.FragmentShowRepositoriesBinding
+import br.com.schmidt.testegithub.models.ItemRepository
 import br.com.schmidt.testegithub.viewmodels.RepositoriesViewModel
 
 class ShowRepositoriesFragment : Fragment() {
@@ -38,7 +39,7 @@ class ShowRepositoriesFragment : Fragment() {
         //findNavController().navigate(R.id.action_ShowRepositoriesFragment_to_ShowPullRequestsFragment)
     }
 
-    private fun setupRecyclerView(list: ArrayList<String>) {
+    private fun setupRecyclerView(list: List<ItemRepository>) {
         binding.apply{
             recyclerViewShowRepositoriesFragment.layoutManager = LinearLayoutManager(requireActivity())
             recyclerViewShowRepositoriesFragment.adapter = RepositoryAdapter(list) { teste ->
@@ -54,9 +55,9 @@ class ShowRepositoriesFragment : Fragment() {
         _binding = null
     }
 
-    private fun adapterOnClick(teste: String) {
+    private fun adapterOnClick(teste: ItemRepository) {
        // ShowPullRequestsFragmentDirections.(teste)
-        val action = ShowRepositoriesFragmentDirections.actionShowRepositoriesFragmentToShowPullRequestsFragment(teste)
+        val action = ShowRepositoriesFragmentDirections.actionShowRepositoriesFragmentToShowPullRequestsFragment(teste.id.toString())
         findNavController().navigate(action)
         println("Teste do click: $teste")
     }

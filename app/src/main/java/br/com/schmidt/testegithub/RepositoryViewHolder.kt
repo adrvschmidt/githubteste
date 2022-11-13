@@ -4,10 +4,11 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.schmidt.testegithub.databinding.ItemRepositoryBinding
+import br.com.schmidt.testegithub.models.ItemRepository
 
-class RepositoryViewHolder(private val binding: ItemRepositoryBinding, val onClick: (String) -> Unit): RecyclerView.ViewHolder(binding.root) {
+class RepositoryViewHolder(private val binding: ItemRepositoryBinding, val onClick: (ItemRepository) -> Unit): RecyclerView.ViewHolder(binding.root) {
 
-    private var currentSelected: String? = null
+    private var currentSelected: ItemRepository? = null
 
     init {
         // Define click listener for the ViewHolder's View.
@@ -16,8 +17,8 @@ class RepositoryViewHolder(private val binding: ItemRepositoryBinding, val onCli
         }
     }
 
-    fun bind(title: String){
+    fun bind(title: ItemRepository){
         currentSelected = title
-        binding.textViewRepositoryName.text = title
+        binding.textViewRepositoryName.text = title.description
     }
 }
