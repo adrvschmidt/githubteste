@@ -57,7 +57,7 @@ class ShowRepositoriesFragment : Fragment() {
 
     private fun adapterOnClick(teste: ItemRepository) {
        // ShowPullRequestsFragmentDirections.(teste)
-        val action = ShowRepositoriesFragmentDirections.actionShowRepositoriesFragmentToShowPullRequestsFragment(teste.id.toString())
+        val action = ShowRepositoriesFragmentDirections.actionShowRepositoriesFragmentToShowPullRequestsFragment(teste)
         findNavController().navigate(action)
         println("Teste do click: $teste")
     }

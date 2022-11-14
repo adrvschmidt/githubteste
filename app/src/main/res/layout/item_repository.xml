@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewShowRepositoryItem"
@@ -18,19 +19,140 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textViewRepositoryName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textSize="18sp"
-                android:text="Teste"
+                app:layout_constraintEnd_toStartOf="@+id/guideline1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Repository Name" />
+
+            <TextView
+                android:id="@+id/textViewRepositoryDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:maxLines="2"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toTopOf="@id/imageViewStars"
+                app:layout_constraintEnd_toStartOf="@+id/guideline1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewRepositoryName"
+                tools:text="Repository Description" />
+
+            <ImageView
+                android:id="@+id/imageViewStars"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_star"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textViewRepositoryForks"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"
+                app:layout_constraintEnd_toStartOf="@id/textViewRepositoryStars"/>
+
+            <TextView
+                android:id="@+id/textViewRepositoryStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:gravity="center_horizontal|start|left"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageViewStars"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"
+                tools:text="4500" />
+
+            <TextView
+                android:id="@+id/textViewRepositoryForks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:textSize="12sp"
+                android:gravity="center_horizontal|start|left"
+                tools:text="500"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageViewFork"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"/>
+
+            <ImageView
+                android:id="@+id/imageViewFork"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_fork"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.65"
+                android:orientation="vertical"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.4"
+                android:orientation="horizontal"/>
+
+            <ImageView
+                android:id="@+id/imageViewUserPhoto"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_account"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewRepositoryUsername"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="13sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/imageViewUserPhoto"
+                app:layout_constraintBottom_toTopOf="@id/textViewRepositoryFullName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                tools:text="Repository Username" />
+
+            <TextView
+                android:id="@+id/textViewRepositoryFullName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/textViewRepositoryUsername"
+                android:layout_marginBottom="10dp"
+                tools:text="Repository Full Name" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

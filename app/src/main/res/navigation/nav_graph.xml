@@ -28,7 +28,7 @@
 
         <argument
             android:name="teste"
-            app:argType="string" />
+            app:argType="br.com.schmidt.testegithub.models.ItemRepository" />
 
     </fragment>
 </navigation>

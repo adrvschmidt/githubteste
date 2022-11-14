@@ -19,6 +19,13 @@ class RepositoryViewHolder(private val binding: ItemRepositoryBinding, val onCli
 
     fun bind(title: ItemRepository){
         currentSelected = title
-        binding.textViewRepositoryName.text = title.description
+        binding.apply {
+            binding.textViewRepositoryName.text = title.name
+            binding.textViewRepositoryFullName.text = title.full_name
+            binding.textViewRepositoryDescription.text = title.description
+            binding.textViewRepositoryStars.text = title.stargazers_count.toString()
+            binding.textViewRepositoryForks.text = title.forks_count.toString()
+            binding.textViewRepositoryUsername.text = title.name
+        }
     }
 }

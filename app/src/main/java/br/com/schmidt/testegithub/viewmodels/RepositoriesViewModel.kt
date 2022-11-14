@@ -45,7 +45,7 @@ class RepositoriesViewModel : ViewModel() {
                                 "${apiInterface.body()!![0].name} " +
                                 "${apiInterface.body()!![0].full_name} " +
                                 "${apiInterface.body()!![0].stargazers_count} " +
-                                "${apiInterface.body()!![0].owner.avatar_url} "
+                                "${apiInterface.body()!![0].owner!!.avatar_url} "
                     )
                     apiInterface.body()?.let { list ->
                         repositoriesMutableLiveData.postValue(list)

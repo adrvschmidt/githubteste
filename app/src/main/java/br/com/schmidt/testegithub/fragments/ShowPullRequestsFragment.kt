@@ -1,6 +1,7 @@
 package br.com.schmidt.testegithub.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,9 @@ class ShowPullRequestsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val teste = args.teste
-        binding.textviewSecond.text = teste
+        Log.d("Adriano", "Teste 1: ${teste.name}")
+        Log.d("Adriano", "Teste 2: ${teste.owner.login}")
+        binding.textviewSecond.text = teste.owner.login
         //findNavController().navigate(R.id.action_ShowPullRequestsFragment_to_ShowRepositoriesFragment)
     }
 
