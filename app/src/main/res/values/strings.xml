@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Github Java</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Show Repositories Fragment</string>
-    <string name="second_fragment_label">Show Pull Requests Fragment</string>
-    <string name="hello_first_fragment">Hello Show Repositories fragment</string>
-    <string name="hello_second_fragment">Hello Show Pull Requests fragment. Arg: %1$s</string>
+    <string name="first_fragment_label">Show Java Repositories</string>
+    <string name="second_fragment_label">Show Pull Requests</string>
+    <string name="page">Page: </string>
 </resources>

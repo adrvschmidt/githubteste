@@ -9,7 +9,7 @@
         android:id="@+id/ShowRepositoriesFragment"
         android:name="br.com.schmidt.testegithub.fragments.ShowRepositoriesFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_show_repositories">
+        tools:layout="@layout/fragment_recycler_view">
 
         <action
             android:id="@+id/action_ShowRepositoriesFragment_to_ShowPullRequestsFragment"

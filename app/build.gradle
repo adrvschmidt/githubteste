@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id("androidx.navigation.safeargs")
+    id 'kotlin-android'
+ //   id 'kotlin-android-extensions'
 }
 
 android {
@@ -21,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -29,9 +31,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kapt {
+        generateStubs = true
     }
+/*    kotlinOptions {
+        jvmTarget = '1.8'
+    }*/
     buildFeatures {
         viewBinding true
     }
@@ -45,14 +50,41 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'com.google.dagger:dagger:2.35.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.35.1'
+/*    implementation 'com.google.dagger:dagger-android:2.44.2'
+    implementation 'com.google.dagger:dagger:2.44.2'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.41'
+    implementation 'com.google.dagger:dagger-android-support:2.35.1'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.35.1'*/
+
+    implementation 'com.google.dagger:dagger:2.44.2'
+    kapt 'com.google.dagger:dagger-compiler:2.41'
+
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
+
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    kapt 'com.github.bumptech.glide:compiler:4.14.2'
+
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+
+    implementation("androidx.paging:paging-runtime-ktx:3.1.1")
+
+    // alternatively - without Android dependencies for tests
+    testImplementation("androidx.paging:paging-common-ktx:3.1.1")
+
+    // optional - RxJava2 support
+    implementation("androidx.paging:paging-rxjava2-ktx:3.1.1")
+
+    // optional - RxJava3 support
+    implementation("androidx.paging:paging-rxjava3:3.1.1")
+
+    // optional - Guava ListenableFuture support
+    implementation("androidx.paging:paging-guava:3.1.1")
+
+    // optional - Jetpack Compose integration
+    implementation("androidx.paging:paging-compose:1.0.0-alpha17")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'

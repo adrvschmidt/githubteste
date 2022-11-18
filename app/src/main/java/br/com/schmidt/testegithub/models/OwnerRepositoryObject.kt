@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class OwnerRepositoryObject(
     @SerializedName("id") val id: Long,
-    @SerializedName("avatar_url") val avatar_url: String,
+    @SerializedName("avatar_url") val avatar: String,
     @SerializedName("login") val login: String,
     ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -18,7 +18,7 @@ data class OwnerRepositoryObject(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
-        parcel.writeString(avatar_url)
+        parcel.writeString(avatar)
         parcel.writeString(login)
     }
 

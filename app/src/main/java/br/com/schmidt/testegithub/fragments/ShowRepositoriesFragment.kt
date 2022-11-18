@@ -8,43 +8,47 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.schmidt.testegithub.R
-import br.com.schmidt.testegithub.RepositoryAdapter
-import br.com.schmidt.testegithub.databinding.FragmentShowRepositoriesBinding
+import br.com.schmidt.testegithub.adapters.RepositoryAdapter
+import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
 import br.com.schmidt.testegithub.models.ItemRepository
 import br.com.schmidt.testegithub.viewmodels.RepositoriesViewModel
 
 class ShowRepositoriesFragment : Fragment() {
 
-    private var _binding: FragmentShowRepositoriesBinding? = null
+    private var _binding: FragmentRecyclerViewBinding? = null
 
     private val binding get() = _binding!!
 
-    private val flowersListViewModel by viewModels<RepositoriesViewModel>()
+    private val repositoriesViewModel by viewModels<RepositoriesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentShowRepositoriesBinding.inflate(inflater, container, false)
+        _binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        flowersListViewModel.repositoriesLiveData.observe(viewLifecycleOwner) { list ->
-            setupRecyclerView(list)
-        }
-        flowersListViewModel.getRepositories()
-        //findNavController().navigate(R.id.action_ShowRepositoriesFragment_to_ShowPullRequestsFragment)
+        startGetRewpositories()
     }
 
-    private fun setupRecyclerView(list: List<ItemRepository>) {
+    private fun startGetRewpositories() {
+        repositoriesViewModel.repositoriesLiveData.observe(viewLifecycleOwner) {
+            it?.let { list ->
+                setupRecyclerView(list)
+            }
+        }
+        repositoriesViewModel.getRepositories()
+    }
+
+    private fun setupRecyclerView(list: List<ItemRepository?>) {
         binding.apply{
-            recyclerViewShowRepositoriesFragment.layoutManager = LinearLayoutManager(requireActivity())
-            recyclerViewShowRepositoriesFragment.adapter = RepositoryAdapter(list) { teste ->
+            recyclerViewFragment.layoutManager = LinearLayoutManager(requireActivity())
+            recyclerViewFragment.adapter = RepositoryAdapter(list) { itemRepository ->
                 adapterOnClick(
-                    teste
+                    itemRepository
                 )
             }
         }
@@ -55,10 +59,9 @@ class ShowRepositoriesFragment : Fragment() {
         _binding = null
     }
 
-    private fun adapterOnClick(teste: ItemRepository) {
-       // ShowPullRequestsFragmentDirections.(teste)
-        val action = ShowRepositoriesFragmentDirections.actionShowRepositoriesFragmentToShowPullRequestsFragment(teste)
+    private fun adapterOnClick(itemRepository: ItemRepository) {
+        val action = ShowRepositoriesFragmentDirections.actionShowRepositoriesFragmentToShowPullRequestsFragment(itemRepository)
         findNavController().navigate(action)
-        println("Teste do click: $teste")
+        println("Teste do click: $itemRepository")
     }
 }
