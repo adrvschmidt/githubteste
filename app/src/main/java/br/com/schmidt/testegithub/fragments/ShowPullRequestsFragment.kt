@@ -1,24 +1,21 @@
 package br.com.schmidt.testegithub.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.schmidt.testegithub.adapters.PullRequestAdapter
-import br.com.schmidt.testegithub.adapters.RepositoryAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
-import br.com.schmidt.testegithub.databinding.FragmentShowPullRequestsBinding
 import br.com.schmidt.testegithub.models.ItemPullRequest
-import br.com.schmidt.testegithub.models.ItemRepository
 import br.com.schmidt.testegithub.viewmodels.PullRequestViewModel
-import kotlinx.coroutines.launch
+
 
 class ShowPullRequestsFragment : Fragment() {
 
@@ -64,6 +61,12 @@ class ShowPullRequestsFragment : Fragment() {
 
     private fun adapterOnClick(webUrlPullRequest: String) {
         Log.d("Adriano", "Teste da url: $webUrlPullRequest")
+        try {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(webUrlPullRequest))
+            startActivity(browserIntent)
+        } catch (e: Exception){
+            Log.d("Adriano", "Sem browser")
+        }
     }
 
     override fun onDestroyView() {
