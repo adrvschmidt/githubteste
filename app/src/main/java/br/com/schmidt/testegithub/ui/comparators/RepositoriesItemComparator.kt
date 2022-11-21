@@ -1,7 +1,7 @@
-package br.com.schmidt.testegithub.comparators
+package br.com.schmidt.testegithub.ui.comparators
 
 import androidx.recyclerview.widget.DiffUtil
-import br.com.schmidt.testegithub.models.ItemRepository
+import br.com.schmidt.testegithub.ui.models.ItemRepository
 
 object RepositoriesItemComparator : DiffUtil.ItemCallback<ItemRepository>() {
     override fun areItemsTheSame(oldItem: ItemRepository, newItem: ItemRepository): Boolean {

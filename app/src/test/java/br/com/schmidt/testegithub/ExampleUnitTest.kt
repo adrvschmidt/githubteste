@@ -1,10 +1,10 @@
 package br.com.schmidt.testegithub
 
-import br.com.schmidt.testegithub.models.ItemRepository
-import br.com.schmidt.testegithub.models.ListRepositoriesObject
-import br.com.schmidt.testegithub.repositories.Repository
+import br.com.schmidt.testegithub.ui.models.ItemRepository
+import br.com.schmidt.testegithub.ui.models.ListRepositoriesObject
+import br.com.schmidt.testegithub.ui.repositories.Repository
 import br.com.schmidt.testegithub.retrofitInterface.RetrofitInterface
-import br.com.schmidt.testegithub.viewmodels.RepositoriesViewModel
+import br.com.schmidt.testegithub.ui.viewmodels.RepositoriesViewModel
 import com.google.gson.Gson
 import io.mockk.mockk
 import kotlinx.coroutines.flow.collectLatest

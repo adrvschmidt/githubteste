@@ -1,10 +1,10 @@
-package br.com.schmidt.testegithub.adapters.viewholders
+package br.com.schmidt.testegithub.ui.adapters.viewholders
 
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import br.com.schmidt.testegithub.databinding.ItemPullRequestBinding
 import br.com.schmidt.testegithub.databinding.ItemRepositoryBinding
-import br.com.schmidt.testegithub.models.ItemPullRequest
+import br.com.schmidt.testegithub.ui.models.ItemPullRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 

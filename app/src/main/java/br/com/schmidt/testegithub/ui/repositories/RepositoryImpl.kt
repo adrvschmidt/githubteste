@@ -1,10 +1,10 @@
-package br.com.schmidt.testegithub.repositories
+package br.com.schmidt.testegithub.ui.repositories
 
 import android.util.Log
 import br.com.schmidt.testegithub.retrofitInterface.RetrofitInterface
-import br.com.schmidt.testegithub.models.ItemPullRequest
-import br.com.schmidt.testegithub.models.ItemRepository
-import br.com.schmidt.testegithub.models.ListRepositoriesObject
+import br.com.schmidt.testegithub.ui.models.ItemPullRequest
+import br.com.schmidt.testegithub.ui.models.ItemRepository
+import br.com.schmidt.testegithub.ui.models.ListRepositoriesObject
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named

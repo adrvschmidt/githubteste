@@ -1,4 +1,4 @@
-package br.com.schmidt.testegithub.models
+package br.com.schmidt.testegithub.ui.models
 
 import android.os.Parcel
 import android.os.Parcelable

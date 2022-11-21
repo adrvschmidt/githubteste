@@ -1,8 +1,8 @@
 package br.com.schmidt.testegithub
 
-import br.com.schmidt.testegithub.models.ItemPullRequest
-import br.com.schmidt.testegithub.models.ListRepositoriesObject
-import br.com.schmidt.testegithub.repositories.Repository
+import br.com.schmidt.testegithub.ui.models.ItemPullRequest
+import br.com.schmidt.testegithub.ui.models.ListRepositoriesObject
+import br.com.schmidt.testegithub.ui.repositories.Repository
 import com.google.gson.Gson
 
 class FakeRepositoryImpl : Repository {

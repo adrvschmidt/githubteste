@@ -2,9 +2,9 @@ package br.com.schmidt.testegithub
 
 import br.com.schmidt.testegithub.di.AppComponent
 import br.com.schmidt.testegithub.di.AppModule
-import br.com.schmidt.testegithub.repositories.RepositoryImpl
-import br.com.schmidt.testegithub.viewmodels.PullRequestViewModel
-import br.com.schmidt.testegithub.viewmodels.RepositoriesViewModel
+import br.com.schmidt.testegithub.ui.repositories.RepositoryImpl
+import br.com.schmidt.testegithub.ui.viewmodels.PullRequestViewModel
+import br.com.schmidt.testegithub.ui.viewmodels.RepositoriesViewModel
 import dagger.Component
 import javax.inject.Singleton
 

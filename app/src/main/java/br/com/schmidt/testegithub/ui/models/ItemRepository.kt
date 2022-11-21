@@ -1,4 +1,4 @@
-package br.com.schmidt.testegithub.models
+package br.com.schmidt.testegithub.ui.models
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -22,7 +22,7 @@ data class ItemRepository(
         parcel.readString()!!,
         parcel.readLong(),
         parcel.readDouble(),
-        parcel.readTypedObject(OwnerRepositoryObject.CREATOR),
+        parcel.readTypedObject(OwnerRepositoryObject),
         parcel.readString()!!,
         parcel.readLong()
     ) {

@@ -1,4 +1,4 @@
-package br.com.schmidt.testegithub.fragments
+package br.com.schmidt.testegithub.ui.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -12,11 +12,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.schmidt.testegithub.comparators.PullRequestsItemComparator
+import br.com.schmidt.testegithub.ui.comparators.PullRequestsItemComparator
 import br.com.schmidt.testegithub.activity.MainActivity
-import br.com.schmidt.testegithub.adapters.PullRequestAdapter
+import br.com.schmidt.testegithub.ui.adapters.PullRequestAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
-import br.com.schmidt.testegithub.viewmodels.PullRequestViewModel
+import br.com.schmidt.testegithub.ui.viewmodels.PullRequestViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -47,9 +47,9 @@ class ShowPullRequestsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val teste = args.teste
-        (requireActivity() as MainActivity).title = "Repository: ${teste.name}"
-        pullRequestViewModel.setCreatorAndRepositoryName(teste.owner!!.login, teste.name)
+        val itemSafeArgs = args.item
+        (requireActivity() as MainActivity).title = "Repository: ${itemSafeArgs.name}"
+        pullRequestViewModel.setCreatorAndRepositoryName(itemSafeArgs.owner!!.login, itemSafeArgs.name)
         setupRecyclerView()
         startGetRewpositories()
         setAdapterListener()

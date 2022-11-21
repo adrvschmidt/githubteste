@@ -1,4 +1,4 @@
-package br.com.schmidt.testegithub.fragments
+package br.com.schmidt.testegithub.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.schmidt.testegithub.R
-import br.com.schmidt.testegithub.comparators.RepositoriesItemComparator
 import br.com.schmidt.testegithub.activity.MainActivity
-import br.com.schmidt.testegithub.adapters.RepositoryAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
-import br.com.schmidt.testegithub.models.ItemRepository
-import br.com.schmidt.testegithub.viewmodels.RepositoriesViewModel
+import br.com.schmidt.testegithub.ui.adapters.RepositoryAdapter
+import br.com.schmidt.testegithub.ui.comparators.RepositoriesItemComparator
+import br.com.schmidt.testegithub.ui.models.ItemRepository
+import br.com.schmidt.testegithub.ui.viewmodels.RepositoriesViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

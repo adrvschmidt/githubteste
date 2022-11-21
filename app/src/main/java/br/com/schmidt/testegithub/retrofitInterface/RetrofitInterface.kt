@@ -1,7 +1,7 @@
 package br.com.schmidt.testegithub.retrofitInterface
 
-import br.com.schmidt.testegithub.models.ItemPullRequest
-import br.com.schmidt.testegithub.models.ListRepositoriesObject
+import br.com.schmidt.testegithub.ui.models.ItemPullRequest
+import br.com.schmidt.testegithub.ui.models.ListRepositoriesObject
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,8 +1,8 @@
 package br.com.schmidt.testegithub.di
 
 import br.com.schmidt.testegithub.MyApplication
-import br.com.schmidt.testegithub.pagings.PullRequestPagingSource
-import br.com.schmidt.testegithub.pagings.RepositoriesPagingSource
+import br.com.schmidt.testegithub.ui.pagings.PullRequestPagingSource
+import br.com.schmidt.testegithub.ui.pagings.RepositoriesPagingSource
 import dagger.Component
 import javax.inject.Singleton
 

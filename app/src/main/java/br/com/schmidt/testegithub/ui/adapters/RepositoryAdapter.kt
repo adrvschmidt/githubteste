@@ -1,12 +1,12 @@
-package br.com.schmidt.testegithub.adapters
+package br.com.schmidt.testegithub.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import br.com.schmidt.testegithub.adapters.viewholders.RepositoryViewHolder
+import br.com.schmidt.testegithub.ui.adapters.viewholders.RepositoryViewHolder
 import br.com.schmidt.testegithub.databinding.ItemRepositoryBinding
-import br.com.schmidt.testegithub.models.ItemRepository
+import br.com.schmidt.testegithub.ui.models.ItemRepository
 
 class RepositoryAdapter(
     diffCallback: DiffUtil.ItemCallback<ItemRepository>, private val onClick: (ItemRepository) -> Unit
