@@ -1,17 +1,14 @@
 package br.com.schmidt.testegithub
 
 import android.app.Application
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import br.com.schmidt.testegithub.models.ItemRepository
-import br.com.schmidt.testegithub.models.ListRepositoriesObject
 import br.com.schmidt.testegithub.repositories.Repository
-import kotlinx.coroutines.channels.BroadcastChannel
-import java.util.concurrent.Flow
 import javax.inject.Inject
 
-class RepositoriesPagingSource constructor(application: Application): PagingSource<Int, ItemRepository>() {
+class RepositoriesPagingSource @Inject constructor(application: Application) :
+    PagingSource<Int, ItemRepository>() {
 
     @Inject
     lateinit var backend: Repository
@@ -33,7 +30,7 @@ class RepositoriesPagingSource constructor(application: Application): PagingSour
             response?.let {
                 return LoadResult.Page(
                     data = it.items,
-                    prevKey = null, // Only paging forward.
+                    prevKey = null,
                     nextKey = nextPageNumber
                 )
             }

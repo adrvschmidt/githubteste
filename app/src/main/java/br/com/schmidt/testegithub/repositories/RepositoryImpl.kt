@@ -7,8 +7,13 @@ import br.com.schmidt.testegithub.models.ItemRepository
 import br.com.schmidt.testegithub.models.ListRepositoriesObject
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
+import javax.inject.Singleton
 
-class RepositoryImpl @Inject constructor(val retrofitService: RetrofitInterface): Repository {
+class RepositoryImpl @Inject constructor(): Repository {
+
+    @Inject
+    lateinit var retrofitService: RetrofitInterface
 
     override suspend fun getAllGithubJavaRepositories(page: Int): ListRepositoriesObject? {
         try {
@@ -19,7 +24,6 @@ class RepositoryImpl @Inject constructor(val retrofitService: RetrofitInterface)
                 }
             } else {
                 Log.d("Adriano", "Faio")
-                //Aqui colocar para retornar que acabou a lista
             }
         } catch (e: Exception){
             Log.d("Adriano", "Faio aqui: $e")

@@ -65,14 +65,12 @@ class ShowPullRequestsFragment : Fragment() {
     private fun startGetRewpositories() {
         lifecycleScope.launch {
             pullRequestViewModel.flow.collectLatest { pagingData ->
-                Log.d("Adriano", "Teste do flow 1: ${pagingData}")
                 pullRequestAdapter.submitData(pagingData = pagingData)
             }
         }
     }
 
     private fun adapterOnClick(webUrlPullRequest: String) {
-        Log.d("Adriano", "Teste da url: $webUrlPullRequest")
         try {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(webUrlPullRequest))
             startActivity(browserIntent)
@@ -83,8 +81,7 @@ class ShowPullRequestsFragment : Fragment() {
 
     private fun setAdapterListener() {
         pullRequestAdapter.addLoadStateListener {
-           // Log.d("Adriano", "Teste do load: ${pullRequestAdapter.itemCount}")
-            //binding.textViewPageNumber.text = (pullRequestAdapter.itemCount / 6).toString()
+            binding.textViewPageNumber.text = (pullRequestAdapter.itemCount / 10).toString()
         }
     }
 

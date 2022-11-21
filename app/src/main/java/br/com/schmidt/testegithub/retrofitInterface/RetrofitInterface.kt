@@ -12,7 +12,7 @@ interface RetrofitInterface {
     @GET("/search/repositories?q=java+in%3Atopics&per_page=15")
     suspend fun getAllGithubJavaRepositories(@Query(value = "page") page: Int): Response<ListRepositoriesObject>
 
-    @GET("/repos/{creator}/{repository}/pulls?q=&per_page=6")
+    @GET("/repos/{creator}/{repository}/pulls?q=&per_page=15")
     suspend fun getAllPullRequestsFromRepository(
         @Path("creator") creator: String,
         @Path("repository") repository: String,
