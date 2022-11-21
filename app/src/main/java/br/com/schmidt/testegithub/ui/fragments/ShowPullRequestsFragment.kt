@@ -8,10 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.schmidt.testegithub.MyApplication
 import br.com.schmidt.testegithub.ui.comparators.PullRequestsItemComparator
 import br.com.schmidt.testegithub.activity.MainActivity
 import br.com.schmidt.testegithub.ui.adapters.PullRequestAdapter
@@ -19,9 +19,10 @@ import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
 import br.com.schmidt.testegithub.ui.viewmodels.PullRequestViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class ShowPullRequestsFragment : Fragment() {
+class ShowPullRequestsFragment @Inject constructor(): Fragment() {
 
     private var _binding: FragmentRecyclerViewBinding? = null
 
@@ -29,7 +30,8 @@ class ShowPullRequestsFragment : Fragment() {
 
     private val args: ShowPullRequestsFragmentArgs by navArgs()
 
-    private val pullRequestViewModel by viewModels<PullRequestViewModel>()
+    @Inject
+    lateinit var pullRequestViewModel: PullRequestViewModel
 
     private val pullRequestAdapter = PullRequestAdapter(PullRequestsItemComparator) { pullRequestWebUrl ->
         adapterOnClick(
@@ -47,6 +49,7 @@ class ShowPullRequestsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().application as MyApplication).getAppComponent().inject(this)
         val itemSafeArgs = args.item
         (requireActivity() as MainActivity).title = "Repository: ${itemSafeArgs.name}"
         pullRequestViewModel.setCreatorAndRepositoryName(itemSafeArgs.owner!!.login, itemSafeArgs.name)

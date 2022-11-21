@@ -9,15 +9,8 @@ import br.com.schmidt.testegithub.ui.repositories.Repository
 import br.com.schmidt.testegithub.utils.Constants.Companion.returnPage
 import javax.inject.Inject
 
-class RepositoriesPagingSource @Inject constructor(application: Application) :
+class RepositoriesPagingSource @Inject constructor(val backend: Repository) :
     PagingSource<Int, ItemRepository>() {
-
-    @Inject
-    lateinit var backend: Repository
-
-    init {
-        (application as MyApplication).getAppComponent().inject(this)
-    }
 
     override suspend fun load(
         params: LoadParams<Int>

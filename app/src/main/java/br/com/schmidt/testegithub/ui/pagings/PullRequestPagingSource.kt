@@ -10,17 +10,17 @@ import br.com.schmidt.testegithub.ui.repositories.Repository
 import br.com.schmidt.testegithub.utils.Constants
 import javax.inject.Inject
 
-class PullRequestPagingSource constructor(
-    private val creator: String,
-    private val repositoryName: String,
-    application: Application
+class PullRequestPagingSource @Inject constructor(
+    val backend: Repository
 ) : PagingSource<Int, ItemPullRequest>() {
 
-    @Inject
-    lateinit var backend: Repository
+    private var creator = ""
+    private var repositoryName = ""
 
-    init {
-        (application as MyApplication).getAppComponent().inject(this)
+    fun registerRepositoryName(creatorFromFragment: String,
+                               repositoryNameFromFragment: String){
+        creator = creatorFromFragment
+        repositoryName = repositoryNameFromFragment
     }
 
     override suspend fun load(
@@ -28,7 +28,6 @@ class PullRequestPagingSource constructor(
     ): LoadResult<Int, ItemPullRequest> {
         try {
             val nextPageNumber = Constants.returnPage(params.key)
-            Log.d("Adriano", "TEste 1: $nextPageNumber")
             val response =
                 backend.getAllPullRequestsFromRepository(creator, repositoryName, nextPageNumber)
             response?.let {

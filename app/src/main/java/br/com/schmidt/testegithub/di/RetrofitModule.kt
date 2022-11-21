@@ -3,6 +3,10 @@ package br.com.schmidt.testegithub.di
 import br.com.schmidt.testegithub.ui.repositories.Repository
 import br.com.schmidt.testegithub.ui.repositories.RepositoryImpl
 import br.com.schmidt.testegithub.retrofitInterface.RetrofitInterface
+import br.com.schmidt.testegithub.ui.pagings.PullRequestPagingSource
+import br.com.schmidt.testegithub.ui.pagings.RepositoriesPagingSource
+import br.com.schmidt.testegithub.ui.viewmodels.PullRequestViewModel
+import br.com.schmidt.testegithub.ui.viewmodels.RepositoriesViewModel
 import br.com.schmidt.testegithub.utils.Constants
 import dagger.Module
 import dagger.Provides

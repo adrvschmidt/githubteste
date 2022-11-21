@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.schmidt.testegithub.MyApplication
 import br.com.schmidt.testegithub.R
 import br.com.schmidt.testegithub.activity.MainActivity
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
@@ -18,14 +19,16 @@ import br.com.schmidt.testegithub.ui.models.ItemRepository
 import br.com.schmidt.testegithub.ui.viewmodels.RepositoriesViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ShowRepositoriesFragment : Fragment() {
+class ShowRepositoriesFragment @Inject constructor(): Fragment() {
 
     private var _binding: FragmentRecyclerViewBinding? = null
 
     private val binding get() = _binding!!
 
-    private val repositoriesViewModel by viewModels<RepositoriesViewModel>()
+    @Inject
+    lateinit var repositoriesViewModel: RepositoriesViewModel
 
     private val repositoryAdapter =
         RepositoryAdapter(RepositoriesItemComparator) { itemRepository ->
@@ -44,6 +47,8 @@ class ShowRepositoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().application as MyApplication).getAppComponent().inject(this)
         (requireActivity() as MainActivity).title =
             requireActivity().getString(R.string.first_fragment_label)
         setupRecyclerView()
