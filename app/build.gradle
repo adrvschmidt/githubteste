@@ -40,6 +40,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    sourceSets {
+        test.resources.srcDirs += 'src/unitTests/resources'
+    }
 }
 
 dependencies {
@@ -71,9 +75,6 @@ dependencies {
 
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")
 
-    // alternatively - without Android dependencies for tests
-    testImplementation("androidx.paging:paging-common-ktx:3.1.1")
-
     // optional - RxJava2 support
     implementation("androidx.paging:paging-rxjava2-ktx:3.1.1")
 
@@ -89,4 +90,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    testImplementation "org.robolectric:robolectric:4.8"
+    androidTestImplementation "org.mockito:mockito-core:4.9.0"
+    androidTestImplementation "org.mockito:mockito-android:4.9.0"
+    testImplementation 'androidx.test:core:1.5.0'
+    testImplementation 'org.mockito:mockito-core:4.9.0'
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")
+    // alternatively - without Android dependencies for tests
+    testImplementation("androidx.paging:paging-common-ktx:3.1.1")
+    testImplementation "io.mockk:mockk:1.10.5"
+    kaptTest "com.google.dagger:dagger-compiler:2.44.2"
+    kaptAndroidTest "com.google.dagger:dagger- compiler:2.44.2"
 }

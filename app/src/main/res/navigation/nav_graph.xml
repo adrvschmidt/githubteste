@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/ShowRepositoriesFragment"
         android:name="br.com.schmidt.testegithub.fragments.ShowRepositoriesFragment"
-        android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_recycler_view">
 
         <action
@@ -19,7 +18,6 @@
     <fragment
         android:id="@+id/ShowPullRequestsFragment"
         android:name="br.com.schmidt.testegithub.fragments.ShowPullRequestsFragment"
-        android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_show_pull_requests">
 
         <action

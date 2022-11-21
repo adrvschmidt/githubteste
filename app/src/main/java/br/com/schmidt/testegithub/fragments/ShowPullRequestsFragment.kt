@@ -9,12 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.schmidt.testegithub.activity.MainActivity
 import br.com.schmidt.testegithub.adapters.PullRequestAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
 import br.com.schmidt.testegithub.models.ItemPullRequest
 import br.com.schmidt.testegithub.viewmodels.PullRequestViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class ShowPullRequestsFragment : Fragment() {
@@ -44,8 +48,8 @@ class ShowPullRequestsFragment : Fragment() {
                 setupRecyclerView(list)
             }
         }
-
-        pullRequestViewModel.getPullRequests("LinkedInLearning", "learning-java-2825378", "1")
+        (requireActivity() as MainActivity).title = "Repository: ${teste.name}"
+        pullRequestViewModel.getPullRequests(teste.owner!!.login, teste.name, 1)
     }
 
     private fun setupRecyclerView(list: List<ItemPullRequest?>) {
@@ -55,6 +59,15 @@ class ShowPullRequestsFragment : Fragment() {
                 adapterOnClick(
                     webUrlPullRequest
                 )
+            }
+        }
+    }
+
+    private fun startGetRewpositories() {
+        lifecycleScope.launch {
+            pullRequestViewModel.flow.collectLatest { pagingData ->
+                Log.d("Adriano", "Teste do flow 1: ${pagingData}")
+              //  repositoryAdapter.submitData(pagingData = pagingData)
             }
         }
     }

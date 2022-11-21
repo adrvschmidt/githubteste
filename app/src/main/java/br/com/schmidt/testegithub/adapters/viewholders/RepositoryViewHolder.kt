@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.schmidt.testegithub.databinding.ItemRepositoryBinding
 import br.com.schmidt.testegithub.models.ItemRepository
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class RepositoryViewHolder(private val binding: ItemRepositoryBinding, val onClick: (ItemRepository) -> Unit): RecyclerView.ViewHolder(binding.root) {
 
@@ -28,7 +29,7 @@ class RepositoryViewHolder(private val binding: ItemRepositoryBinding, val onCli
                 Glide
                     .with(imageViewUserPhoto)
                     .load(it.avatar)
-                    .centerCrop()
+                    .apply(RequestOptions.circleCropTransform())
                     .into(imageViewUserPhoto)
             }
         }

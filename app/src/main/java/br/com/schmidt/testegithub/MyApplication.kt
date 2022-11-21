@@ -4,6 +4,7 @@ import android.app.Application
 import br.com.schmidt.testegithub.di.AppComponent
 import br.com.schmidt.testegithub.di.AppModule
 import br.com.schmidt.testegithub.di.DaggerAppComponent
+import br.com.schmidt.testegithub.di.RetrofitModule
 
 open class MyApplication: Application() {
 
@@ -14,7 +15,7 @@ open class MyApplication: Application() {
         appComponent = DaggerAppComponent.builder().appModule(AppModule()).build()
     }
 
-    fun getAppComponent(): AppComponent {
+    open fun getAppComponent(): AppComponent {
         return appComponent
     }
 }

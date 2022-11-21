@@ -6,6 +6,7 @@ import br.com.schmidt.testegithub.databinding.ItemPullRequestBinding
 import br.com.schmidt.testegithub.databinding.ItemRepositoryBinding
 import br.com.schmidt.testegithub.models.ItemPullRequest
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class PullRequestsViewHolder(
     private val binding: ItemPullRequestBinding,
@@ -30,7 +31,7 @@ class PullRequestsViewHolder(
                 Glide
                     .with(imageViewPullRequestUserPhoto)
                     .load(it.avatar)
-                    .centerCrop()
+                    .apply(RequestOptions.circleCropTransform())
                     .into(imageViewPullRequestUserPhoto)
             }
         }
