@@ -10,6 +10,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import br.com.schmidt.testegithub.MyApplication
+import br.com.schmidt.testegithub.PullRequestPagingSource
 import br.com.schmidt.testegithub.RepositoriesPagingSource
 import br.com.schmidt.testegithub.models.ItemPullRequest
 import br.com.schmidt.testegithub.repositories.Repository
@@ -31,19 +32,26 @@ class PullRequestViewModel(application: Application) : AndroidViewModel(applicat
         (application as MyApplication).getAppComponent().inject(this)
     }
 
+    var creator: String = ""
+    var repositoryName: String = ""
+
     val flow = Pager(
         PagingConfig(pageSize = 15)
     ) {
-        RepositoriesPagingSource(application)
+        PullRequestPagingSource(creator, repositoryName, application)
     }.flow
         .cachedIn(viewModelScope).catch {
             Log.d("Adriano", "Entrou no erro do flow") }
 
-    fun getPullRequests(creator: String, repositoryName: String, page: Int) {
+    fun setCreatorAndRepositoryName(creatorFromFragment: String, repositoryNameFromFragment: String){
+        creator = creatorFromFragment
+        repositoryName = repositoryNameFromFragment
+    }
+/*    fun getPullRequests(creator: String, repositoryName: String, page: Int) {
         viewModelScope.async {
             repository.getAllPullRequestsFromRepository(creator, repositoryName, page).let { list ->
                 pullRequestsMutableLiveData.postValue(list)
             }
         }
-    }
+    }*/
 }

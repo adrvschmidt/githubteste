@@ -24,13 +24,11 @@ class RepositoriesPagingSource constructor(application: Application): PagingSour
         params: LoadParams<Int>
     ): LoadResult<Int, ItemRepository> {
         try {
-            // Start refresh at page 1 if undefined.
             var countPage = 0
             params.key?.let {
                 countPage = it
             }
             val nextPageNumber = countPage + 1
-            Log.d("Adriano", "TEste 1: $nextPageNumber")
             val response = backend.getAllGithubJavaRepositories(nextPageNumber)
             response?.let {
                 return LoadResult.Page(
@@ -41,15 +39,12 @@ class RepositoriesPagingSource constructor(application: Application): PagingSour
             }
         } catch (e: Exception) {
             return LoadResult.Error(e)
-            // Handle errors in this block and return LoadResult.Error if it is an
-            // expected error (such as a network failure).
         }
         return LoadResult.Error(Exception("Faio feio"))
     }
 
     override fun getRefreshKey(state: PagingState<Int, ItemRepository>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
-            Log.d("Adriano", "Testando aqui: ${state.closestPageToPosition(anchorPosition)}")
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }

@@ -1,7 +1,6 @@
 package br.com.schmidt.testegithub.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.schmidt.testegithub.RepositoriesItemComparator
 import br.com.schmidt.testegithub.R
+import br.com.schmidt.testegithub.RepositoriesItemComparator
 import br.com.schmidt.testegithub.activity.MainActivity
 import br.com.schmidt.testegithub.adapters.RepositoryAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
 import br.com.schmidt.testegithub.models.ItemRepository
 import br.com.schmidt.testegithub.viewmodels.RepositoriesViewModel
-import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -29,13 +27,12 @@ class ShowRepositoriesFragment : Fragment() {
 
     private val repositoriesViewModel by viewModels<RepositoriesViewModel>()
 
-    private val repositoryAdapter = RepositoryAdapter(RepositoriesItemComparator) { itemRepository ->
-        adapterOnClick(
-            itemRepository
-        )
-    }
-
-    private val channel = BroadcastChannel<Int>(1)
+    private val repositoryAdapter =
+        RepositoryAdapter(RepositoriesItemComparator) { itemRepository ->
+            adapterOnClick(
+                itemRepository
+            )
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +44,8 @@ class ShowRepositoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as MainActivity).title = requireActivity().getString(R.string.first_fragment_label)
+        (requireActivity() as MainActivity).title =
+            requireActivity().getString(R.string.first_fragment_label)
         setupRecyclerView()
         startGetRewpositories()
         setAdapterListener()
@@ -55,7 +53,6 @@ class ShowRepositoriesFragment : Fragment() {
 
     private fun setAdapterListener() {
         repositoryAdapter.addLoadStateListener {
-            Log.d("Adriano", "Teste do load: ${repositoryAdapter.itemCount}")
             binding.textViewPageNumber.text = (repositoryAdapter.itemCount / 15).toString()
         }
     }
@@ -63,7 +60,6 @@ class ShowRepositoriesFragment : Fragment() {
     private fun startGetRewpositories() {
         lifecycleScope.launch {
             repositoriesViewModel.flow.collectLatest { pagingData ->
-                Log.d("Adriano", "Teste do flow 1: ${pagingData}")
                 repositoryAdapter.submitData(pagingData = pagingData)
             }
         }
@@ -87,6 +83,5 @@ class ShowRepositoriesFragment : Fragment() {
                 itemRepository
             )
         findNavController().navigate(action)
-        println("Teste do click: $itemRepository")
     }
 }

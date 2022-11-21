@@ -12,10 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.schmidt.testegithub.PullRequestsItemComparator
 import br.com.schmidt.testegithub.activity.MainActivity
 import br.com.schmidt.testegithub.adapters.PullRequestAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding
-import br.com.schmidt.testegithub.models.ItemPullRequest
 import br.com.schmidt.testegithub.viewmodels.PullRequestViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -31,6 +31,12 @@ class ShowPullRequestsFragment : Fragment() {
 
     private val pullRequestViewModel by viewModels<PullRequestViewModel>()
 
+    private val pullRequestAdapter = PullRequestAdapter(PullRequestsItemComparator) { pullRequestWebUrl ->
+        adapterOnClick(
+            pullRequestWebUrl
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,32 +48,25 @@ class ShowPullRequestsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val teste = args.teste
-
-        pullRequestViewModel.pullRequestsLiveData.observe(viewLifecycleOwner) {
-            it?.let { list ->
-                setupRecyclerView(list)
-            }
-        }
         (requireActivity() as MainActivity).title = "Repository: ${teste.name}"
-        pullRequestViewModel.getPullRequests(teste.owner!!.login, teste.name, 1)
+        pullRequestViewModel.setCreatorAndRepositoryName(teste.owner!!.login, teste.name)
+        setupRecyclerView()
+        startGetRewpositories()
+        setAdapterListener()
     }
 
-    private fun setupRecyclerView(list: List<ItemPullRequest?>) {
+    private fun setupRecyclerView() {
         binding.apply{
             recyclerViewFragment.layoutManager = LinearLayoutManager(requireActivity())
-            recyclerViewFragment.adapter = PullRequestAdapter(list) { webUrlPullRequest ->
-                adapterOnClick(
-                    webUrlPullRequest
-                )
+            recyclerViewFragment.adapter = pullRequestAdapter
             }
         }
-    }
 
     private fun startGetRewpositories() {
         lifecycleScope.launch {
             pullRequestViewModel.flow.collectLatest { pagingData ->
                 Log.d("Adriano", "Teste do flow 1: ${pagingData}")
-              //  repositoryAdapter.submitData(pagingData = pagingData)
+                pullRequestAdapter.submitData(pagingData = pagingData)
             }
         }
     }
@@ -79,6 +78,13 @@ class ShowPullRequestsFragment : Fragment() {
             startActivity(browserIntent)
         } catch (e: Exception){
             Log.d("Adriano", "Sem browser")
+        }
+    }
+
+    private fun setAdapterListener() {
+        pullRequestAdapter.addLoadStateListener {
+           // Log.d("Adriano", "Teste do load: ${pullRequestAdapter.itemCount}")
+            //binding.textViewPageNumber.text = (pullRequestAdapter.itemCount / 6).toString()
         }
     }
 

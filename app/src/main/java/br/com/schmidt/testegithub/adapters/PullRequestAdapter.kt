@@ -2,15 +2,17 @@ package br.com.schmidt.testegithub.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.schmidt.testegithub.adapters.viewholders.PullRequestsViewHolder
 import br.com.schmidt.testegithub.databinding.ItemPullRequestBinding
 import br.com.schmidt.testegithub.models.ItemPullRequest
+import br.com.schmidt.testegithub.models.ItemRepository
 
-class PullRequestAdapter(
-    private val list: List<ItemPullRequest?>,
+class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<ItemPullRequest>,
     private val onClick: (String) -> Unit
-) : RecyclerView.Adapter<PullRequestsViewHolder>() {
+) : PagingDataAdapter<ItemPullRequest, PullRequestsViewHolder>(diffCallback) {
 
     lateinit var itemPullRequestBinding: ItemPullRequestBinding
 
@@ -22,12 +24,9 @@ class PullRequestAdapter(
     }
 
     override fun onBindViewHolder(holder: PullRequestsViewHolder, position: Int) {
-        list[position]?.let {
+        val item = getItem(position)
+        item?.let {
             holder.bind(it)
         }
-    }
-
-    override fun getItemCount(): Int {
-        return list.size
     }
 }

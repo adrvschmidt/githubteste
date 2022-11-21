@@ -28,7 +28,7 @@ class RepositoryImpl @Inject constructor(val retrofitService: RetrofitInterface)
     }
 
     override suspend fun getAllPullRequestsFromRepository(creator: String, repository: String, page: Int): List<ItemPullRequest>? {
-        Log.d("Adriano", "Teste 2")
+        Log.d("Adriano", "Teste do creator = $creator, e repositorio = $repository")
         try {
             val callback = retrofitService.getAllPullRequestsFromRepository(creator = creator, repository = repository, page = page)
             if (callback.isSuccessful) {
