@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import br.com.schmidt.testegithub.PullRequestPagingSource
+import br.com.schmidt.testegithub.pagings.PullRequestPagingSource
 import kotlinx.coroutines.flow.catch
 
 class PullRequestViewModel(application: Application) : AndroidViewModel(application) {

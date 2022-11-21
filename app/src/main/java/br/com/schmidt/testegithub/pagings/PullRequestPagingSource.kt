@@ -1,11 +1,13 @@
-package br.com.schmidt.testegithub
+package br.com.schmidt.testegithub.pagings
 
 import android.app.Application
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import br.com.schmidt.testegithub.MyApplication
 import br.com.schmidt.testegithub.models.ItemPullRequest
 import br.com.schmidt.testegithub.repositories.Repository
+import br.com.schmidt.testegithub.utils.Constants
 import javax.inject.Inject
 
 class PullRequestPagingSource constructor(
@@ -25,11 +27,7 @@ class PullRequestPagingSource constructor(
         params: LoadParams<Int>
     ): LoadResult<Int, ItemPullRequest> {
         try {
-            var countPage = 0
-            params.key?.let {
-                countPage = it
-            }
-            val nextPageNumber = countPage + 1
+            val nextPageNumber = Constants.returnPage(params.key)
             Log.d("Adriano", "TEste 1: $nextPageNumber")
             val response =
                 backend.getAllPullRequestsFromRepository(creator, repositoryName, nextPageNumber)

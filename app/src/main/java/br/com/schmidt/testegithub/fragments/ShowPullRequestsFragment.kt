@@ -12,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.schmidt.testegithub.PullRequestsItemComparator
+import br.com.schmidt.testegithub.comparators.PullRequestsItemComparator
 import br.com.schmidt.testegithub.activity.MainActivity
 import br.com.schmidt.testegithub.adapters.PullRequestAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding

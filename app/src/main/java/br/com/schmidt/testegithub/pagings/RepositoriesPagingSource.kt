@@ -1,10 +1,12 @@
-package br.com.schmidt.testegithub
+package br.com.schmidt.testegithub.pagings
 
 import android.app.Application
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import br.com.schmidt.testegithub.MyApplication
 import br.com.schmidt.testegithub.models.ItemRepository
 import br.com.schmidt.testegithub.repositories.Repository
+import br.com.schmidt.testegithub.utils.Constants.Companion.returnPage
 import javax.inject.Inject
 
 class RepositoriesPagingSource @Inject constructor(application: Application) :
@@ -21,11 +23,7 @@ class RepositoriesPagingSource @Inject constructor(application: Application) :
         params: LoadParams<Int>
     ): LoadResult<Int, ItemRepository> {
         try {
-            var countPage = 0
-            params.key?.let {
-                countPage = it
-            }
-            val nextPageNumber = countPage + 1
+            val nextPageNumber = returnPage(params.key)
             val response = backend.getAllGithubJavaRepositories(nextPageNumber)
             response?.let {
                 return LoadResult.Page(

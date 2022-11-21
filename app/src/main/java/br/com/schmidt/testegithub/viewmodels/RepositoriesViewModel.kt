@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import br.com.schmidt.testegithub.RepositoriesPagingSource
+import br.com.schmidt.testegithub.pagings.RepositoriesPagingSource
 import kotlinx.coroutines.flow.catch
 
 

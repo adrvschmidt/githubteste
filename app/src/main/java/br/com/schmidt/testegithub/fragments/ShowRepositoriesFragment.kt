@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.schmidt.testegithub.R
-import br.com.schmidt.testegithub.RepositoriesItemComparator
+import br.com.schmidt.testegithub.comparators.RepositoriesItemComparator
 import br.com.schmidt.testegithub.activity.MainActivity
 import br.com.schmidt.testegithub.adapters.RepositoryAdapter
 import br.com.schmidt.testegithub.databinding.FragmentRecyclerViewBinding

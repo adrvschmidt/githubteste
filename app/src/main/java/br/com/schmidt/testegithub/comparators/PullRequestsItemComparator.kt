@@ -1,4 +1,4 @@
-package br.com.schmidt.testegithub
+package br.com.schmidt.testegithub.comparators
 
 import androidx.recyclerview.widget.DiffUtil
 import br.com.schmidt.testegithub.models.ItemPullRequest
